@@ -2,7 +2,6 @@ set(CPM_DOWNLOAD_VERSION 0.42.1)
 
 set(CPM_DOWNLOAD_LOCATION "${LIB_DIR}/cpm/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
 
-# Expand relative path. This is important if the provided path contains a tilde (~)
 get_filename_component(CPM_DOWNLOAD_LOCATION ${CPM_DOWNLOAD_LOCATION} ABSOLUTE)
 
 function(download_cpm)
@@ -15,7 +14,6 @@ endfunction()
 if(NOT (EXISTS ${CPM_DOWNLOAD_LOCATION}))
   download_cpm()
 else()
-  # resume download if it previously failed
   file(READ ${CPM_DOWNLOAD_LOCATION} check)
   if("${check}" STREQUAL "")
     download_cpm()

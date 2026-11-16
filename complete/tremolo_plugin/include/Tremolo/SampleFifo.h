@@ -1,14 +1,10 @@
 #pragma once
 
 namespace tremolo {
-/** A single-producer, single-consumer FIFO queue to retrieve a single channel
- * of samples from the audio thread */
 template <typename SampleType>
 class SampleFifo {
 public:
   void prepare(double sampleRate) {
-    // we want to provide enough capacity so that we don't miss a
-    // sample at low fps.
     const auto sampleCapacity = static_cast<int>(1.0 * sampleRate);
 
     buffer.setSize(1, sampleCapacity);
@@ -57,4 +53,4 @@ private:
   juce::AbstractFifo fifo{initialCapacity};
   juce::AudioBuffer<SampleType> buffer{1, initialCapacity};
 };
-}  // namespace tremolo
+}

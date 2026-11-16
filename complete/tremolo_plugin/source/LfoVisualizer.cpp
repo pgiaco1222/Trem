@@ -7,7 +7,6 @@ LfoVisualizer::LfoVisualizer(ReadAllLfoSamples readSamples,
     : readAllLfoSamples{std::move(readSamples)},
       getCurrentSampleRate{std::move(getRate)},
       isBypassed{std::move(getIsBypassed)} {
-  // preallocate
   buffer.setSize(1, static_cast<int>(getCurrentSampleRate()));
 
   samplesToPath();
@@ -84,7 +83,6 @@ void LfoVisualizer::samplesToPath() {
   lfoCurve = path;
 }
 
-// clang-format off
 juce::AffineTransform LfoVisualizer::getLfoCurveTransform() const {
   constexpr auto ylim = 1.1f;
   const auto bounds = getLocalBounds().toFloat();
@@ -94,5 +92,4 @@ juce::AffineTransform LfoVisualizer::getLfoCurveTransform() const {
       lfoCurve.getCurrentPosition().getX(), -ylim, /* -> */ bounds.getWidth(), bounds.getHeight());
   return transform;
 }
-// clang-format on
-}  // namespace tremolo
+}

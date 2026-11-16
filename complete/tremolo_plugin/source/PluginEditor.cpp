@@ -65,8 +65,6 @@ PluginEditor::PluginEditor(PluginProcessor& p)
 
   setLookAndFeel(&lookAndFeel);
 
-  // Make sure that before the constructor has finished, you've set the
-  // editor's size to whatever you need it to be.
   setSize(540, 270);
 }
 
@@ -99,8 +97,6 @@ void PluginEditor::resized() {
 
   auto waveformLabelBounds = bounds;
   waveformLabelBounds.removeFromTop(48);
-
-  // we make more space here than in Figma to avoid ellipsis insertion
   waveformLabelBounds.removeFromRight(461);
 
   waveformLabelBounds.removeFromBottom(206);
@@ -117,8 +113,6 @@ void PluginEditor::resized() {
 
   auto bypassLabelBounds = bounds;
   bypassLabelBounds.removeFromTop(48);
-
-  // we make more space here than in Figma to avoid ellipsis insertion
   bypassLabelBounds.removeFromRight(104);
 
   bypassLabelBounds.removeFromBottom(206);
@@ -126,4 +120,4 @@ void PluginEditor::resized() {
 
   bypassLabel.setBounds(bypassLabelBounds);
 }
-}  // namespace tremolo
+}

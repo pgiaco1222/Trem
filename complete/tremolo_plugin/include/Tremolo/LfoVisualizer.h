@@ -31,16 +31,6 @@ private:
   [[nodiscard]] size_t getStride() const;
 
   void samplesToPath();
-
-  /** @brief Creates a transform that maps current LFO curve to component bounds
-   *
-   * @detail The transform is based on following point mappings:
-   *
-   *   (0,ylim)                        -> (0,0) (left-top corner)
-   *   (0,-ylim)                       -> (0, height) (left-bottom corner)
-   *   (curve end X coordinate, -ylim) -> (component width, component height)
-   *                                      (right-bottom corner)
-   */
   [[nodiscard]] juce::AffineTransform getLfoCurveTransform() const;
 
   float curveWidth{4.f};
@@ -58,4 +48,4 @@ private:
   juce::VBlankAttachment vblankAttachment{
       this, [this](double timestampSeconds) { update(timestampSeconds); }};
 };
-}  // namespace tremolo
+}

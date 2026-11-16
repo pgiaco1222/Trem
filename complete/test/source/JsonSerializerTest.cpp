@@ -76,13 +76,11 @@ TEST(JsonSerializer, DontUpdateParametersWhenWaveformNameIsInvalid) {
   parameters.bypassed = false;
   parameters.rate = 5.f;
 
-  // when
   const auto result = JsonSerializer::deserialize(inputStream, parameters);
 
-  // then
   EXPECT_TRUE(result.failed());
   EXPECT_FLOAT_EQ(parameters.rate.get(), 5.f);
   EXPECT_FALSE(parameters.bypassed.get());
   EXPECT_EQ(0, parameters.waveform.getIndex());
 }
-}  // namespace tremolo
+}

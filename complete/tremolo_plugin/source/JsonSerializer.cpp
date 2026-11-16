@@ -34,7 +34,7 @@ SerializableParameters from(const tremolo::Parameters& p) {
       .waveform = p.waveform.getCurrentChoiceName(),
   };
 }
-}  // namespace
+}
 
 namespace tremolo {
 void JsonSerializer::serialize(const Parameters& parameters,
@@ -72,7 +72,6 @@ juce::Result JsonSerializer::deserialize(juce::InputStream& input,
   const auto modulationWaveformIndex =
       parameters.waveform.choices.indexOf(parsedParameters->waveform);
   if (modulationWaveformIndex < 0) {
-    // don't update parameters if modulation waveform name is invalid
     return juce::Result::fail(
         "invalid modulation waveform name; supported values are: " +
         parameters.waveform.choices.joinIntoString(", "));
@@ -84,4 +83,4 @@ juce::Result JsonSerializer::deserialize(juce::InputStream& input,
 
   return juce::Result::ok();
 }
-}  // namespace tremolo
+}

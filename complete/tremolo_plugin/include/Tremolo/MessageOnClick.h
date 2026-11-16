@@ -25,7 +25,6 @@ public:
 
 private:
   void displayPopup() {
-    // only the first call to addChildComponent() has an effect
     parent.addChildComponent(popup);
 
     if (!popup.isVisible()) {
@@ -40,4 +39,4 @@ private:
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MessageOnClick)
 };
-}  // namespace tremolo
+}

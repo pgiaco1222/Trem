@@ -37,7 +37,6 @@ public:
 
   juce::Font getComboBoxFont(juce::ComboBox&) override;
 
-  /** @brief Positions the Label within the ComboBox and sets its font */
   void positionComboBoxText(juce::ComboBox&,
                             juce::Label& labelToPosition) override;
 
@@ -58,4 +57,4 @@ private:
   [[nodiscard]] static juce::FontOptions interMedium();
   [[nodiscard]] static juce::FontOptions interBold();
 };
-}  // namespace tremolo
+}

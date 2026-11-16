@@ -13,17 +13,8 @@ void extractLfo(Tremolo& tremolo, juce::AudioBuffer<float>& bufferToUse) {
   tremolo.process(bufferToUse);
   block.subtract(1.f);
 }
-}  // namespace
+}
 
-/** This test extracts the LFO used by the Tremolo effect and saves it to a WAV
- * file "lfo.wav".
- *
- * You can find the file in the same folder where the test executable resides,
- * most probably [CMake binary dir]/test/.
- *
- * The LFO rate is not changed; thus, the one set in Tremolo's constructor will
- * be used.
- */
 TEST(Tremolo, ExtractLfo) {
   for (const auto lfoWaveform :
        {Tremolo::LfoWaveform::sine, Tremolo::LfoWaveform::triangle}) {
@@ -49,15 +40,6 @@ TEST(Tremolo, ExtractLfo) {
   }
 }
 
-/** This test extracts the LFO used by the Tremolo effect switching the LFO
- * shape mid-processing, and saves it to a WAV file "smoothedLfo.wav".
- *
- * You can find the file in the same folder where the test executable resides,
- * most probably [CMake binary dir]/test/.
- *
- * The LFO rate is not changed; thus, the one set in Tremolo's constructor will
- * be used.
- */
 TEST(Tremolo, LfoWaveformTransitionIsSmooth) {
   Tremolo testee;
   constexpr auto sampleRate = 48000.0;
@@ -96,13 +78,11 @@ TEST(Tremolo, SamplewiseAndChannelwiseProcessingYieldIdenticalResults) {
   const auto sampleRate = 48000_Hz;
   const auto testSignal = wolfsound::generateWhiteNoise(sampleRate, 1s, 0);
 
-  // create 2 identical input signal buffers
   juce::AudioBuffer<float> samplewiseBuffer{
       1, static_cast<int>(testSignal.size())};
   std::ranges::copy(testSignal, samplewiseBuffer.getWritePointer(0));
   auto channelwiseBuffer = samplewiseBuffer;
 
-  // create 2 identical Tremolo instances with default parameters
   Tremolo samplewiseTremolo;
   Tremolo channelwiseTremolo;
 
@@ -111,10 +91,8 @@ TEST(Tremolo, SamplewiseAndChannelwiseProcessingYieldIdenticalResults) {
   channelwiseTremolo.prepare(sampleRate.value(),
                              static_cast<int>(testSignal.size()));
 
-  // process the first using sample-wise processing
   samplewiseTremolo.process(samplewiseBuffer);
 
-  // process the second using block-wise processing
   channelwiseTremolo.processChannelwise(channelwiseBuffer);
 
   for (const auto i : std::views::iota(0, samplewiseBuffer.getNumSamples())) {
@@ -122,4 +100,4 @@ TEST(Tremolo, SamplewiseAndChannelwiseProcessingYieldIdenticalResults) {
                 channelwiseBuffer.getSample(0, i), 1e-5f);
   }
 }
-}  // namespace tremolo
+}

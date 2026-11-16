@@ -31,7 +31,7 @@ void drawButtonInset(juce::Graphics& g, const juce::Rectangle<float>& bounds) {
   g.setGradientFill(insetGradient);
   g.fillRoundedRectangle(bounds, 6.f);
 }
-}  // namespace
+}
 
 juce::Colour CustomLookAndFeel::getColor(Colors colorName) {
   static const std::array colors{
@@ -53,7 +53,6 @@ CustomLookAndFeel::CustomLookAndFeel() {
   setColour(juce::BubbleComponent::backgroundColourId, darkBlue);
   setColour(juce::BubbleComponent::outlineColourId, juce::Colour{0xFF0C0E16});
 
-  // used to set the font of the default standalone plugin window
   getDefaultLookAndFeel().setDefaultSansSerifTypeface(
       interMedium().getTypeface());
 }
@@ -103,13 +102,11 @@ void CustomLookAndFeel::drawRotarySlider(juce::Graphics& g,
   g.setGradientFill(knobFill);
   g.fillEllipse(knobBounds);
 
-  // Knob stroke
   g.setColour(juce::Colour{0x400B1E3A});
   constexpr auto knobStrokeThickness = 1.33f;
   g.drawEllipse(knobBounds.reduced(knobStrokeThickness / 2.f),
                 knobStrokeThickness);
 
-  // Knob top
   const auto knobTopBounds = knobBounds.reduced(7.f);
   auto knobTopFill = juce::ColourGradient{juce::Colour{0xFF6697CB},
                                           knobTopBounds.getCentreX(),
@@ -122,7 +119,6 @@ void CustomLookAndFeel::drawRotarySlider(juce::Graphics& g,
   g.setGradientFill(knobTopFill);
   g.fillEllipse(knobTopBounds);
 
-  // Knob top edge
   auto knobTopEdgeFill = juce::ColourGradient{juce::Colour{0xFF8FFFFF},
                                               knobTopBounds.getCentreX(),
                                               knobTopBounds.getY(),
@@ -232,4 +228,4 @@ juce::FontOptions CustomLookAndFeel::interBold() {
       assets::InterBold_ttf, assets::InterBold_ttfSize);
   return juce::FontOptions{result};
 }
-}  // namespace tremolo
+}

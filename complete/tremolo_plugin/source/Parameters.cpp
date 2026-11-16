@@ -36,10 +36,10 @@ juce::AudioParameterChoice& createWaveformParameter(
           juce::ParameterID{"modulation.waveform", versionHint},
           "Modulation waveform", juce::StringArray{"Sine", "Triangle"}, 0));
 }
-}  // namespace
+}
 
 Parameters::Parameters(juce::AudioProcessor& processor)
     : rate{createModulationRateParameter(processor)},
       bypassed{createBypassedParameter(processor)},
       waveform{createWaveformParameter(processor)} {}
-}  // namespace tremolo
+}

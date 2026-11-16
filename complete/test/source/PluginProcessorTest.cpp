@@ -7,8 +7,6 @@
 using namespace wolfsound::literals;
 
 namespace tremolo {
-/** This test doesn't test anything but shows that you can instantiate and use a
- * plugin processor in test */
 TEST(PluginProcessor, PlaceholderTest) {
   PluginProcessor processor{};
 }
@@ -50,15 +48,15 @@ TEST_F(BypassTransitionIsSmoothTest, ExerciseAllSegments) {
   };
 
   testee.getParameterRefs().bypassed = false;
-  process();  // bypass OFF
+  process();
 
   testee.getParameterRefs().bypassed = true;
-  process();  // transition OFF -> ON
-  process();  // bypass ON
+  process();
+  process();
 
   testee.getParameterRefs().bypassed = false;
-  process();  // transition ON -> OFF
-  process();  // bypass OFF
+  process();
+  process();
 
   wolfsound::WavFileWriter::writeToFile(
       getFileOutputPath("bypassTransition.wav"),
@@ -66,4 +64,4 @@ TEST_F(BypassTransitionIsSmoothTest, ExerciseAllSegments) {
                  static_cast<size_t>(outputBuffer.getNumSamples())},
       sampleRate);
 }
-}  // namespace tremolo
+}

@@ -37,9 +37,6 @@ public:
   juce::AudioProcessorParameter* getBypassParameter() const noexcept override;
 
   void readAllLfoSamples(juce::AudioBuffer<float>& bufferToFill);
-
-  /** @brief Retrieves the most recent sample rate the processor was given
-   * in a thread-safe manner */
   double getSampleRateThreadSafe() const noexcept;
 
 private:
@@ -50,4 +47,4 @@ private:
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PluginProcessor)
 };
-}  // namespace tremolo
+}
